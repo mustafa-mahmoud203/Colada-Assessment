@@ -1,0 +1,17 @@
+# version: '3'
+services:
+  colada:
+    container_name: colada_container
+    image: mongo:2.6
+    ports:
+      - "27017:27017"
+  
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - colada
+    environment:
+      MONGO_URI: mongodb://mongo:27017/orders_db
