@@ -1,13 +1,13 @@
 import express,{Express} from "express"
 import compression from "compression";
 import cors from "cors";
-
+import globalErrorHandling from "./middleware/errorHandling";
 class App {
     private app :Express
     private port:number
     constructor(){
         this.app=express()
-        this.port=parseInt(process.env.PORT|| "3000",10)  
+        this.port=parseInt(process.env.s|| "3000",10)  
         this.configureMiddleware()
         this.startServer()
     }
@@ -17,6 +17,7 @@ class App {
         this.app.use(compression())
         this.app.use(cors())
         this.app.options('*',cors())
+        this.app.use(globalErrorHandling)
     }
     private startServer(): void {
         this.app.listen(this.port,()=>{
