@@ -11,12 +11,6 @@ const userSchema: Schema = new Schema<IUser>({
     required: true,
     unique: true,
   },
-  orders: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Order",
-    },
-  ],
 });
 
 const userModel: any = model<IUser>("User", userSchema);
