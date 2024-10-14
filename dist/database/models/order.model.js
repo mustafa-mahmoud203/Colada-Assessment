@@ -25,9 +25,14 @@ const orderSchema = new mongoose_1.Schema({
                 type: mongoose_1.Schema.Types.ObjectId,
                 ref: "Product",
             },
-            quantity: Number,
+            quantity: {
+                type: Number,
+                required: true,
+                min: 1,
+            },
         },
     ],
 });
+orderSchema.index({ location: "2dsphere" });
 const orderModel = (0, mongoose_1.model)("Order", orderSchema);
 exports.default = orderModel;

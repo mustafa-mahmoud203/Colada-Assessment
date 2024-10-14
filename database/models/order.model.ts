@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
+import IOrder from "../../src/interfaces/order.interface";
 
-const orderSchema: Schema = new Schema({
+const orderSchema: Schema = new Schema<IOrder>({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -25,11 +26,16 @@ const orderSchema: Schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Product",
       },
-      quantity: Number,
+      quantity: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
     },
   ],
 });
 
-const orderModel = model("Order", orderSchema);
+orderSchema.index({ location: "2dsphere" });
+const orderModel = model<IOrder>("Order", orderSchema);
 
 export default orderModel;

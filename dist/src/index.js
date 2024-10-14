@@ -26,18 +26,15 @@ class App {
         this.app.use(errorHandling_1.default);
         this.app.use((0, compression_1.default)());
         this.app.use((0, cors_1.default)());
-        this.app.options('*', (0, cors_1.default)());
+        this.app.options("*", (0, cors_1.default)());
     }
     initRoutes() {
         this.app.use("/api/users/top-spenders", user_route_1.default);
         this.app.use("/api/products/demand-analysis", product_route_1.default);
-        this.app.use("/h", (req, res, next) => {
-            res.send("Helllllllllllllllo");
-        });
     }
     startServer() {
         this.app.listen(this.port, () => {
-            console.log(`Server is running on port 3000`);
+            console.log(`Server is running on port ${process.env.PORT}`);
         });
     }
 }

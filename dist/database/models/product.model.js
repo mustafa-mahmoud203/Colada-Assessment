@@ -4,16 +4,17 @@ const mongoose_1 = require("mongoose");
 const productSchema = new mongoose_1.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     price: {
         type: Number,
-        required: true
+        required: true,
     },
     category: {
         type: String,
-        default: "Uncategorized"
-    }
+        default: "Uncategorized",
+    },
 });
+productSchema.index({ category: 1 });
 const productModel = (0, mongoose_1.model)("Product", productSchema);
 exports.default = productModel;
