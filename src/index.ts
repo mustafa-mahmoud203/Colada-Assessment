@@ -2,7 +2,7 @@ import express,{Express} from "express"
 import compression from "compression";
 import cors from "cors";
 import globalErrorHandling from "./middleware/errorHandling";
-
+import dbConnection from "../database/connection";//+
 import productRoutes from "./routers/product.route";
 import userRoute from "./routers/user.route";
 
@@ -15,7 +15,7 @@ class App {
         this.startServer()
         this.configureMiddleware()
         this.initRoutes()
-
+      
     }
     private configureMiddleware(): void {
         this.app.use(express.json())
@@ -29,8 +29,12 @@ class App {
     private initRoutes() {
         this.app.use("/api/users/top-spenders", userRoute);
         this.app.use("/api/products/demand-analysis", productRoutes);
+        this.app.use("/h",(req, res, next) => {
+          res.send("Helllllllllllllllow")
+        });
       }
-    private startServer(): void {
+    private async startServer(): Promise<void> {
+       await dbConnection()
         this.app.listen(this.port,()=>{
             console.log(`Server is running on port ${this.port}`)
         })

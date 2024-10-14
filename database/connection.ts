@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 // Connect to MongoDB
-const dbConectino= async ()=>{
+const dbConnectino= async ()=>{
     try {
         await mongoose.connect("mongodb://mongo:27017/colada")
         console.log("Data base connected...............");    
@@ -10,3 +10,5 @@ const dbConectino= async ()=>{
         console.log(`fail to connect data base........${error}`);
     }
 }
+
+export default dbConnectino
