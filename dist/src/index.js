@@ -7,12 +7,15 @@ const express_1 = __importDefault(require("express"));
 const compression_1 = __importDefault(require("compression"));
 const cors_1 = __importDefault(require("cors"));
 const errorHandling_1 = __importDefault(require("./middleware/errorHandling"));
+const connection_1 = __importDefault(require("../database/connection"));
 const product_route_1 = __importDefault(require("./routers/product.route"));
 const user_route_1 = __importDefault(require("./routers/user.route"));
+require("dotenv/config");
 class App {
     constructor() {
         this.app = (0, express_1.default)();
         this.port = parseInt(process.env.PORT || "3000", 10);
+        (0, connection_1.default)();
         this.startServer();
         this.configureMiddleware();
         this.initRoutes();
@@ -29,12 +32,12 @@ class App {
         this.app.use("/api/users/top-spenders", user_route_1.default);
         this.app.use("/api/products/demand-analysis", product_route_1.default);
         this.app.use("/h", (req, res, next) => {
-            res.send("Helllllllllllllllow");
+            res.send("Helllllllllllllllo");
         });
     }
     startServer() {
         this.app.listen(this.port, () => {
-            console.log(`Server is running on port ${this.port}`);
+            console.log(`Server is running on port 3000`);
         });
     }
 }

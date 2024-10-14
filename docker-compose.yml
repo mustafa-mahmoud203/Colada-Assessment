@@ -1,17 +1,32 @@
-# version: '3'
 services:
-  colada:
+  colada_app:
     container_name: colada_container
-    image: mongo:2.6
-    ports:
-      - "27017:27017"
-  
-
-  app:
     build: .
     ports:
       - "3000:3000"
-    depends_on:
-      - colada
+    volumes:
+      - ./src:/app/src:ro
+      - ./dist:/app/dist:ro
+
+  mongodb:
+    image: mongo:3
+    restart: always
+    volumes:
+      - mongo-db:/data/db
     environment:
-      MONGO_URI: mongodb://mongo:27017/orders_db
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass
+      ME_CONFIG_MONGODB_URL: mongodb://root:pass@mongodb:27017/    
+
+    
+volumes:
+  mongo-db:
