@@ -14,7 +14,7 @@ require("dotenv/config");
 class App {
     constructor() {
         this.app = (0, express_1.default)();
-        this.port = parseInt(process.env.PORT || "3000", 10);
+        this.port = parseInt(process.env.PORT_NUM || "3000", 10);
         (0, connection_1.default)();
         this.startServer();
         this.configureMiddleware();

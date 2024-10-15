@@ -12,7 +12,7 @@ class App {
   private port: number;
   constructor() {
     this.app = express();
-    this.port = parseInt(process.env.PORT || "3000", 10);
+    this.port = parseInt(process.env.PORT_NUM || "3000", 10);
     dbConnection();
     this.startServer();
     this.configureMiddleware();
