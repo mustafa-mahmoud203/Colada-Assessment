@@ -1,5 +1,4 @@
 import { Types } from "mongoose";
-import { IProductItem } from "./product.interface";
 
 interface IOrder {
   user: Types.ObjectId;
@@ -9,6 +8,6 @@ interface IOrder {
     type: string;
     coordinates: [number, number];
   };
-  products: IProductItem[];
+  products: Types.ObjectId[];
 }
 export default IOrder;

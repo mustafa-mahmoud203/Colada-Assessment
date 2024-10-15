@@ -17,7 +17,10 @@ const orderSchema = new mongoose_1.Schema({
             type: String,
             enum: ["point"],
         },
-        coordinates: [Number, Number],
+        coordinates: {
+            type: [Number, Number],
+            default: [0, 0],
+        },
     },
     products: [
         {
@@ -25,14 +28,9 @@ const orderSchema = new mongoose_1.Schema({
                 type: mongoose_1.Schema.Types.ObjectId,
                 ref: "Product",
             },
-            quantity: {
-                type: Number,
-                required: true,
-                min: 1,
-            },
         },
     ],
 });
-orderSchema.index({ location: "2dsphere" });
+orderSchema.index({ location: "2dsphere", user: 1, date: 1 });
 const orderModel = (0, mongoose_1.model)("Order", orderSchema);
 exports.default = orderModel;

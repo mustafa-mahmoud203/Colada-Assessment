@@ -17,7 +17,10 @@ const orderSchema: Schema = new Schema<IOrder>({
       type: String,
       enum: ["point"],
     },
-    coordinates: [Number, Number],
+    coordinates: {
+      type: [Number, Number],
+      default: [0, 0],
+    },
   },
 
   products: [
@@ -26,16 +29,11 @@ const orderSchema: Schema = new Schema<IOrder>({
         type: Schema.Types.ObjectId,
         ref: "Product",
       },
-      quantity: {
-        type: Number,
-        required: true,
-        min: 1,
-      },
     },
   ],
 });
 
-orderSchema.index({ location: "2dsphere" });
+orderSchema.index({ location: "2dsphere", user: 1, date: 1 });
 const orderModel = model<IOrder>("Order", orderSchema);
 
 export default orderModel;
