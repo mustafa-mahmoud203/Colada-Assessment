@@ -1,22 +1,10 @@
 import { Schema, model } from "mongoose";
 import IOrder from "../../src/interfaces/order.interface";
+import { productSchema } from "./product.model";
+import { userSchema } from "./user.model";
 
 const orderSchema: Schema = new Schema<IOrder>({
-  user: {
-    id: {
-      type: Schema.Types.ObjectId,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-  },
+  user: userSchema,
   date: {
     type: Date,
     default: Date.now,
@@ -34,26 +22,7 @@ const orderSchema: Schema = new Schema<IOrder>({
     },
   },
 
-  products: [
-    {
-      _id: {
-        type: Schema.Types.ObjectId,
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      price: {
-        type: Number,
-        required: true,
-      },
-      category: {
-        type: String,
-        default: "Uncategorized",
-      },
-    },
-  ],
+  products: [productSchema],
 });
 
 orderSchema.index({ location: "2dsphere", user: 1, date: 1 });

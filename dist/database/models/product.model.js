@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.productModel = exports.productSchema = void 0;
 const mongoose_1 = require("mongoose");
-const productSchema = new mongoose_1.Schema({
+exports.productSchema = new mongoose_1.Schema({
     name: {
         type: String,
         required: true,
@@ -15,6 +16,5 @@ const productSchema = new mongoose_1.Schema({
         default: "Uncategorized",
     },
 });
-productSchema.index({ category: 1 });
-const productModel = (0, mongoose_1.model)("Product", productSchema);
-exports.default = productModel;
+exports.productSchema.index({ category: 1 });
+exports.productModel = (0, mongoose_1.model)("Product", exports.productSchema);
