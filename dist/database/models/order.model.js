@@ -3,8 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const orderSchema = new mongoose_1.Schema({
     user: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: "User",
+        id: {
+            type: mongoose_1.Schema.Types.ObjectId,
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+        },
     },
     date: {
         type: Date,
@@ -15,18 +26,30 @@ const orderSchema = new mongoose_1.Schema({
     location: {
         type: {
             type: String,
-            enum: ["point"],
+            enum: ["Point"],
         },
         coordinates: {
-            type: [Number, Number],
+            type: [Number],
             default: [0, 0],
         },
     },
     products: [
         {
-            product: {
+            _id: {
                 type: mongoose_1.Schema.Types.ObjectId,
-                ref: "Product",
+                required: true,
+            },
+            name: {
+                type: String,
+                required: true,
+            },
+            price: {
+                type: Number,
+                required: true,
+            },
+            category: {
+                type: String,
+                default: "Uncategorized",
             },
         },
     ],

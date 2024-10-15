@@ -3,8 +3,19 @@ import IOrder from "../../src/interfaces/order.interface";
 
 const orderSchema: Schema = new Schema<IOrder>({
   user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    id: {
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
   },
   date: {
     type: Date,
@@ -15,19 +26,31 @@ const orderSchema: Schema = new Schema<IOrder>({
   location: {
     type: {
       type: String,
-      enum: ["point"],
+      enum: ["Point"],
     },
     coordinates: {
-      type: [Number, Number],
+      type: [Number],
       default: [0, 0],
     },
   },
 
   products: [
     {
-      product: {
+      _id: {
         type: Schema.Types.ObjectId,
-        ref: "Product",
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      category: {
+        type: String,
+        default: "Uncategorized",
       },
     },
   ],
