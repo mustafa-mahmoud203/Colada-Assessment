@@ -16,12 +16,8 @@ ME_CONFIG_MONGODB_ADMINPASSWORD="pass"
 MONGO_INITDB_ROOT_USERNAME="root"
 MONGO_INITDB_ROOT_PASSWORD="pass"
 ```
-### 3. Build the Project
-Run the following command to convert TypeScript files to JavaScript and create the dist folder:
-```bash
-docker-compose up --build
-```
-### 4. Run the Project with Docker
+
+### 3. Run the Project with Docker
 To start the project using Docker, use the following command:
 ```bash
 docker-compose up --build
