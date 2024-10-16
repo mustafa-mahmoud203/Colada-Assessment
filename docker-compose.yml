@@ -5,9 +5,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./src:/app/src:ro
-      - ./dist:/app/dist:ro
-      - /app/node_modules
+      - ./src:/app/src
+      - ./dist:/app/dist
 
   mongodb:
     image: mongo:3
