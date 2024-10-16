@@ -12,7 +12,7 @@ class UserRouters {
         this.initRoutes();
     }
     initRoutes() {
-        this.router.get("/", this.userController.users);
+        this.router.get("/", this.userController.users.bind(this.userController));
     }
 }
 exports.default = new UserRouters().router;

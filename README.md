@@ -3,9 +3,11 @@
 ## Getting Started
 
 ### 1. Clone the Project
+
 After cloning this project, follow the steps below to set it up.
 
 ### 2. Create a `.env` File
+
 Add a `.env` file in the root directory with the following content:
 
 ```bash
@@ -18,12 +20,17 @@ MONGO_INITDB_ROOT_PASSWORD="pass"
 ```
 
 ### 3. Run the Project with Docker
+
 To start the project using Docker, use the following command:
+
 ```bash
 docker-compose up --build
 ```
-### 5. Stopping the Application
+
+### 4. Stopping the Application
+
 To stop the running Docker containers, press CTRL + C in the terminal where the containers are running. To remove stopped containers and networks, you can run:
+
 ```bash
 docker-compose down
 ```

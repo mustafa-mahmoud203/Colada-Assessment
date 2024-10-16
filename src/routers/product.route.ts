@@ -13,7 +13,10 @@ class ProductRouters {
   }
 
   private initRoutes(): void {
-    this.router.get("/", this.productController.products);
+    this.router.get(
+      "/",
+      this.productController.products.bind(this.productController)
+    );
   }
 }
 export default new ProductRouters().router;

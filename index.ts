@@ -1,10 +1,10 @@
 import express, { Express } from "express";
 import compression from "compression";
 import cors from "cors";
-import globalErrorHandling from "./middleware/errorHandling";
-import dbConnection from "../database/connection";
-import productRoutes from "./routers/product.route";
-import userRoute from "./routers/user.route";
+import globalErrorHandling from "./src/middleware/errorHandling";
+import dbConnection from "./database/connection";
+import productRoutes from "./src/routers/product.route";
+import userRoute from "./src/routers/user.route";
 import "dotenv/config";
 
 class App {

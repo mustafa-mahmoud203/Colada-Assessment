@@ -12,7 +12,7 @@ class ProductRouters {
         this.initRoutes();
     }
     initRoutes() {
-        this.router.get("/", this.productController.products);
+        this.router.get("/", this.productController.products.bind(this.productController));
     }
 }
 exports.default = new ProductRouters().router;
